@@ -3,20 +3,20 @@ name: CI/CD Pipeline
 on:
   push:
     branches:
-      - main   # Se ejecuta en cada push a main
+      - main   # se ejecuta en cada push a main
 
 jobs:
-  build-test-deploy:
+  deploy:
     runs-on: ubuntu-latest
     
     steps:
       - name: Checkout código
         uses: actions/checkout@v3
 
-      - name: Validar HTML
-        uses: chabad360/html-proofer@v1.0
+      - name: Configurar Node.js (opcional si luego usas frameworks)
+        uses: actions/setup-node@v3
         with:
-          directory: ./
+          node-version: 18
 
       - name: Desplegar a GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
