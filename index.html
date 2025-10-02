@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>RápidoYa - Demo</title>
+  <style>
+    body { font-family: Inter, Arial, sans-serif; margin: 2rem; background:#f6f8fa; }
+    header { display:flex; justify-content:space-between; align-items:center; }
+    .card { background:white; padding:1.25rem; border-radius:8px; box-shadow:0 6px 18px rgba(0,0,0,.06); max-width:720px; margin-top:1rem; }
+    .btn { display:inline-block; padding:.5rem .9rem; border-radius:6px; background:#0b5fff; color:white; text-decoration:none; cursor:pointer; border:none; }
+    .log { margin-top:1rem; background:#222; color:#fff; padding:.75rem; border-radius:6px; font-family:monospace; max-height:160px; overflow:auto; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>RápidoYa — Demo de entrega</h1>
+    <small>Demo CI/CD — repo: <strong>rapido-ya-demo</strong></small>
+  </header>
+
+  <div class="card">
+    <h2>Estado del despliegue</h2>
+    <p>App simple que simula un build y deploy.</p>
+
+    <label>Versión:</label>
+    <input id="version" value="v0.1.0" />
+
+    <p style="margin-top:.75rem;">
+      <button id="btnBuild" class="btn">Ejecutar build</button>
+      <button id="btnDeploy" class="btn" style="background:#16a34a">Deploy (producción)</button>
+    </p>
+
+    <div id="log" class="log">— Logs aparecerán aquí —</div>
+  </div>
+
+  <script>
+    const logEl = document.getElementById('log');
+    function log(text){ const t = new Date().toISOString().replace('T',' ').replace('Z',''); logEl.innerText = `[${t}] ${text}\n` + logEl.innerText; }
+
+    document.getElementById('btnBuild').addEventListener('click', () => {
+      log('Iniciando proceso de build...');
+      setTimeout(()=> log('Tests ejecutados: OK'), 1000);
+      setTimeout(()=> log('Build completado: OK'), 1500);
+    });
+
+    document.getElementById('btnDeploy').addEventListener('click', () => {
+      log('Iniciando deploy a producción...');
+      setTimeout(()=> log('Deploy finalizado: OK — https://demo.rapido-ya.example'), 1800);
+    });
+  </script>
+</body>
+</html>
